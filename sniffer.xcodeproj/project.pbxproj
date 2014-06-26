@@ -28,6 +28,8 @@
 		B1A84EA0195CCD5B0063C048 /* sniffer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sniffer; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A84EA3195CCD5B0063C048 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		B1A84EA5195CCD5B0063C048 /* sniffer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = sniffer.1; sourceTree = "<group>"; };
+		B1A84EAD195CCF9B0063C048 /* TP3-2014.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "TP3-2014.pdf"; sourceTree = "<group>"; };
+		B1A84EAE195CCFA70063C048 /* header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = header.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,8 @@
 		B1A84EA2195CCD5B0063C048 /* sniffer */ = {
 			isa = PBXGroup;
 			children = (
+				B1A84EAE195CCFA70063C048 /* header.h */,
+				B1A84EAD195CCF9B0063C048 /* TP3-2014.pdf */,
 				B1A84EA3195CCD5B0063C048 /* main.c */,
 				B1A84EA5195CCD5B0063C048 /* sniffer.1 */,
 			);
