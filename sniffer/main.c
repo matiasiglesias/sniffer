@@ -2,7 +2,7 @@
 //  main.c
 //  sniffer
 //
-//  Created by Matías Iglesias on 26/06/14.
+//  Created by Matías Iglesias, Carla Santos y Diego Carabajal on 26/06/14.
 //  Copyright (c) 2014 redes. All rights reserved.
 //
 
@@ -110,12 +110,12 @@ void obtenerEstadisticas(){
     
 	system("clear");
     
-	if (!(p = pcap_open_offline("dump.txt", errbuf))) {
+	if (!(p = pcap_open_offline("dump.txt", errbuf))) {//abre el archivo dump.txt (formato tcpdump)
 		fprintf(stderr,"Error abriendo el fichero, %s, en modo lectura: %s\n", "dump.txt" , errbuf);
 		exit(-1);
 	}
     
-	pcap_loop(p, 0, &estadisticas, (char *)0);
+	pcap_loop(p, 0, &estadisticas, (char *)0);//2º param en 0. Procesa hasta cond de finalización
 	
 	pcap_close(p);
 	
@@ -192,8 +192,8 @@ void mostrarHeaders(u_char *temp1,const struct pcap_pkthdr *header, const u_char
     
 	trama = (ttrama_ethernet *)(pkt_data);
     
-	//si es una trama ethernet
-  	if(ntohs(trama->tipo)== ETHERTYPE_IP){
+	//si es una trama ethernet e indica que el protocolo es IP
+  	if(ntohs(trama->tipo) == ETHERTYPE_IP){//The function converts the unsigned short integer netshort from network byte order to host byte order.
         
 		//genero el datagrama que contiene los datos de la trama capturada
         datagrama = (tdatagrama_ip *)(pkt_data + sizeof(ttrama_ethernet));
@@ -327,7 +327,7 @@ int proxFlag(int pos){
 }
 
 
-//toma un paquete y lo analiza para veer los valores que tiene
+//toma un paquete y lo analiza para ver los valores que tiene
 void identificarConex(u_char *temp1,const struct pcap_pkthdr *header, const u_char *pkt_data){
   	tdatagrama_ip *datagrama;
   	ttrama_ethernet *trama;
@@ -743,26 +743,33 @@ void mostrarTrafico(){
 	
     
     //------------------------------- MUESTRO LAS APLICACIONES ----------------------------------------
-    
-	printf("\n    Puertos de las aplicaciones con mas trafico\n\n");
+    printf("*****************************************************\n");
+	printf("* Puertos de las aplicaciones con mas trafico       *\n");
+	printf("*****************************************************\n\n");
+
 	ordenarArreglo(&cantidadA[0], &cantidadAux[0], cantport);
 	mostrarDatosArreglo(&cantidadA[0], &cantidadAux[0], cantport, 1);
 	
     //------------------------------- MUESTRO LAS MAQUINAS ----------------------------------------
     
-	printf("    IP de las maquinas que tuvieron mas trafico\n\n");
+    printf("*****************************************************\n");
+	printf("* IP de las maquinas que tuvieron mas trafico       *\n");
+	printf("*****************************************************\n\n");
+
 	ordenarArreglo(&cantidadM[0], &cantidadAux2[0], cant_host);
 	mostrarDatosArreglo(&cantidadM[0], &cantidadAux2[0], cant_host, 2);
 	
     //------------------------------- MUESTRO LOS PROTOCOLOS ----------------------------------------
 	
-	printf("    Nombres de los protocolos con mas trafico\n\n");
+	printf("*****************************************************\n");
+	printf("* Nombres de los protocolos con mas trafico         *\n");
+	printf("*****************************************************\n");
+
 	ordenarArreglo(&proto[0], &protoaux[0], CANTIDAD_PROTOCOLOS);
 	mostrarDatosArreglo(&proto[0], &protoaux[0], CANTIDAD_PROTOCOLOS, 3);
     
-	
 	//salgo de la funcion, a la espera de que el usuario presione una tecla
-	printf("\n\n Presione enter para continuar...");
+	printf("\nPresione enter para continuar...");
 	getchar();
 }
 
@@ -770,23 +777,40 @@ void mostrarTrafico(){
 void menu(){
     
     system("clear");
-    printf("  \n Trabajo Practico nro. 3 - Analizador de trafico (Gonzalez, Lopez, Bender, Hughes)\n\n");
-    
-    printf("  \n 1 - Estadisticas			\n");
-    printf("  \n 2 - Filtrado de paquetes TCP		\n");
-    printf("  \n 3 - Filtrado de paquetes UDP		\n");
-    printf("  \n 4 - Primeras dos conexiones TCP		\n");
-    printf("  \n 5 - Ancho de Banda				\n");
-    printf("  \n 6 - Salir					\n");
-    
+    printf("\n*****************************************************\n");
+    printf("*                                                   *\n");
+	printf("*  Trabajo Practico Nro. 3 - Analizador de trafico  *\n"); 
+    printf("*                                                   *\n");
+    //printf("*           Iglesias, Carabajal, Santos             *\n");
+    printf("*****************************************************\n");
+    printf("*                                                   *\n");
+    printf("* 1 - Estadisticas		                    *\n");
+    printf("*                                                   *\n");
+    printf("* 2 - Filtrado de paquetes TCP	      	            *\n");
+    printf("*                                                   *\n");
+    printf("* 3 - Filtrado de paquetes UDP		            *\n");
+    printf("*                                                   *\n");
+    printf("* 4 - Primeras dos conexiones TCP		    *\n");
+	printf("*                                                   *\n");
+    printf("* 5 - Ancho de Banda				    *\n");
+    printf("*                                                   *\n");
+    printf("* 6 - Salir				            *\n");
+    printf("*                                                   *\n");
+	printf("*****************************************************\n");
+
     printf("\n\nIngrese la opcion: ");
 }
 
 void mostrarEstadisticas(int cant_paq, int cant_ip, int cant_tcp, int cant_udp, int cant_arp, int cant_rarp, int cant_otros)
 {
-	printf("\nEstadisticas de protocolos destacados\n");
-    
-	printf("\n\n	Cantidad total de paquetes capturados:..... %d\n", cant_paq);
+	
+	printf("\n**************************************************************\n");
+
+	printf("\n        Estadisticas de protocolos destacados\n");
+
+    printf("\n**************************************************************\n");
+
+	printf("\n	Cantidad total de paquetes capturados:..... %d\n", cant_paq);
     
 	printf("	Cantidad paquetes ARP: .................... %d\n", cant_arp);
     
@@ -796,11 +820,13 @@ void mostrarEstadisticas(int cant_paq, int cant_ip, int cant_tcp, int cant_udp, 
     
 	printf("	Cantidad paquetes IP:...................... %d\n", cant_ip);
     
-	printf("	>> Cantidad paquetes IP de TCP:............ %d\n", cant_tcp);
+	printf("	Cantidad paquetes IP de TCP:............... %d\n", cant_tcp);
     
-	printf("	>> Cantidad paquetes IP de UDP:............ %d\n", cant_udp);
+	printf("	Cantidad paquetes IP de UDP:............... %d\n", cant_udp);
     
-	printf("\n\n\n  Presione enter para continuar...");
+    printf("\n**************************************************************\n");
+
+	printf("\n\n  Presione enter para continuar...");
 	getchar();
     
 }
@@ -889,19 +915,18 @@ void capturarTramas(char *argv[]){
 	
 	// manejador de la interfaz elegida
     pcap_t *p;
-	// descriptor del archivo dump
+	// file descriptor del archivo dump
 	pcap_dumper_t *pcap_fd;
 	int cant_paquetes;
     
     
-	//dispositivo al cual me conectare para capturar los paquetes
-	interface_de_red = argv[1];
+	//dispositivo al cual me conecto para capturar los paquetes
+	interface_de_red = argv[1];//interfaz tal comoeth0, wlan0, etc...
     
 	//activo el dispositivo para caturar los paquetes
-    // OJO DECIA -1 en vez de 0 --> MATIAS
     p = pcap_open_live(interface_de_red, BUFSIZ, 1, 0, errbuf);
     
-	//si no  pude abrir el dispositivo para capturar paquetes
+	//si no pude abrir el dispositivo para capturar paquetes, muestro error...
     if(p == NULL){ 
 		printf("ERROR en pcap_open_live(): %s\n",errbuf); 
 		exit(-1); 
@@ -909,11 +934,11 @@ void capturarTramas(char *argv[]){
     
 	//creo el archivo temporal que contendra el flujo de datos capturado.	
 	if ( (pcap_fd = pcap_dump_open(p, "./dump.txt")) == NULL ){
-		printf("Error al tratar de abrir el archivo para realizar el volcado de pauqtes\n");
+		printf("Error al tratar de abrir el archivo para realizar el volcado de paquetes\n");
 		exit(-1);
 	}	
 	
-	cant_paquetes = atoi(argv[2]);
+	cant_paquetes = atoi(argv[2]); //Convierte la cadena apuntada a una representación de int.
 	//si la cantidad de paquetes a capturar es menor o igual a cero
 	//le asigno un valor por defecto
 	if ( cant_paquetes <= 0 )
@@ -921,8 +946,8 @@ void capturarTramas(char *argv[]){
     
 	printf("Realizando captura de paquetes, por favor espere...\n");
 	
-    pcap_loop(p, cant_paquetes, &pcap_dump, (char *)pcap_fd);
-    
+    pcap_loop(p, cant_paquetes, &pcap_dump, (char *)pcap_fd); //procesa paquetes hasta que todos los paquetes de
+    													      //de cant_paquetes hayn sido procesados		
 	pcap_dump_close(pcap_fd);
 	pcap_close(p);
 }
