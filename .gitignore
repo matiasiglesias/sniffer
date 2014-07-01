@@ -1,0 +1,4 @@
+main
+*.c~
+*.h~
+dump.txt
