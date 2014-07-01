@@ -1,4 +1,5 @@
-main
+sniffer/main
+sniffer/sniffer
 *.c~
 *.h~
 dump.txt
