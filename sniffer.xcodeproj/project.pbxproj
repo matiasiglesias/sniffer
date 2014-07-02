@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B148099F196458B100552AAE /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = B148099E196458B100552AAE /* Makefile */; };
 		B1A84EA4195CCD5B0063C048 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = B1A84EA3195CCD5B0063C048 /* main.c */; };
 		B1A84EA6195CCD5B0063C048 /* sniffer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = B1A84EA5195CCD5B0063C048 /* sniffer.1 */; };
 /* End PBXBuildFile section */
@@ -25,6 +26,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B148099E196458B100552AAE /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
 		B1A84EA0195CCD5B0063C048 /* sniffer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sniffer; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1A84EA3195CCD5B0063C048 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		B1A84EA5195CCD5B0063C048 /* sniffer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = sniffer.1; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				B1A84EAE195CCFA70063C048 /* header.h */,
 				B1A84EAD195CCF9B0063C048 /* TP3-2014.pdf */,
 				B1A84EA3195CCD5B0063C048 /* main.c */,
+				B148099E196458B100552AAE /* Makefile */,
 				B1A84EA5195CCD5B0063C048 /* sniffer.1 */,
 			);
 			path = sniffer;
@@ -121,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B148099F196458B100552AAE /* Makefile in Sources */,
 				B1A84EA4195CCD5B0063C048 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -231,6 +235,7 @@
 				B1A84EAB195CCD5B0063C048 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

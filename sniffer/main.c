@@ -34,7 +34,7 @@ void capturarTramas(char *argv[]);
 
 
 int ip, arp, rarp, otros, ptcp, pudp, icmp;
-int aplicaciones[100];
+long aplicaciones[100];
 int cantidadA[100];		// aplicaciones conectadas
 char *maquinas[100];	// ips conectadas
 int cantidadM[100];		// paquetes por ip
@@ -124,7 +124,7 @@ void obtenerEstadisticas(){
 
 //genera las estadisticas del analizador.
 void estadisticas(u_char *temp1, const struct pcap_pkthdr *header, const u_char *pkt_data){
-  	u_int i = 0;
+  	//u_int i = 0;
   	tdatagrama_ip *datagrama;
   	ttrama_ethernet *trama;
 	struct protoent *es_protocolo;
@@ -180,10 +180,10 @@ void interpretarCabeceras(){
 void mostrarHeaders(u_char *temp1,const struct pcap_pkthdr *header, const u_char *pkt_data){
   	tdatagrama_ip *datagrama;
   	ttrama_ethernet *trama;
-	struct protoent *es_protocolo;
+	//struct protoent *es_protocolo;
 	const struct tdatagrama_tcp *tcp;
 	const struct tdatagrama_udp *udp;
-	const char *payload;
+	//const char *payload;
 	int size_ip;
 	int size_tcp;
 	int size_udp;
@@ -331,7 +331,7 @@ int proxFlag(int pos){
 void identificarConex(u_char *temp1,const struct pcap_pkthdr *header, const u_char *pkt_data){
   	tdatagrama_ip *datagrama;
   	ttrama_ethernet *trama;
-	struct protoent *es_protocolo;
+	//struct protoent *es_protocolo;
 	const struct tdatagrama_tcp *tcp;
 	int pos, prox_param;
 	int size_ip;
@@ -456,7 +456,7 @@ void identificarConex(u_char *temp1,const struct pcap_pkthdr *header, const u_ch
 void mostrarConexionesEncontradas(){
 	int i;
 	int cantConex;
-	tdatagrama_ip datagrama;
+	//tdatagrama_ip datagrama;
 	
 	if (conexEncontradas == 1 )	{
         printf("\n   Se encontro %d conexion que inicio y finalizo correctamente.\n", conexEncontradas);
@@ -557,7 +557,7 @@ void mostrarConsumidores(u_char *temp1,const struct pcap_pkthdr *header, const u
 	const struct tdatagrama_udp *udp;
 	int size_ip;
 	int size_tcp;
-	int size_udp;
+	//int size_udp;
 	int i;
     char origen[20], destino[20];
 	long sport, dport; 	//  sport => puerto origen  y  dport => puerto destino
@@ -676,7 +676,8 @@ void mostrarConsumidores(u_char *temp1,const struct pcap_pkthdr *header, const u
 
 
 void ordenarArreglo(int original[], int copia[], int tope){
-	int i, j, aux, m, ant;
+	int i, j, aux;
+    //int m, ant;
 	
     
 	for (j = 0; j < tope; j++){
@@ -698,7 +699,7 @@ void ordenarArreglo(int original[], int copia[], int tope){
 // Muestra los datos de los arreglos que recibe por parametro
 void mostrarDatosArreglo(int original[], int copia[], int tope, int tipo){
 	int i, j, aux, m, ant;
-	int pepe;
+	//int pepe;
 	
 	m = 0;
 	ant = -1;
@@ -718,7 +719,7 @@ void mostrarDatosArreglo(int original[], int copia[], int tope, int tipo){
 		//printf("  antes del switch   TIPO  3   : %d\n", tipo);
         switch (tipo){
 			case 1:
-				printf( "            Aplicacion %d\n", aplicaciones[j]);
+				printf( "            Aplicacion %ld\n", aplicaciones[j]);
 				break;
 			case 2:
 				printf( "            Maquina %s\n", maquinas[j]);
