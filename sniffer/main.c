@@ -694,7 +694,22 @@ void ordenarArreglo(int original[], int copia[], int tope){
 		}
 	}
 }
-
+//Devuelve el nombre del puerto bien conocido
+//http://www.networksorcery.com/enp/protocol/ip/ports00000.htm
+char* getappnombre(long portnumber) {
+    switch (portnumber) {
+        case 20:
+            return "[HTTPS, HTTP over SSL/TLS]";
+        case 21:
+            return "[FTP, File Transfer Protocol, control]";
+        case 80:
+            return "[HTTP]";
+        case 443:
+            return "[HTTPS, HTTP over SSL/TLS]";
+        default:
+            return "";
+    }
+}
 
 // Muestra los datos de los arreglos que recibe por parametro
 void mostrarDatosArreglo(int original[], int copia[], int tope, int tipo){
@@ -719,7 +734,7 @@ void mostrarDatosArreglo(int original[], int copia[], int tope, int tipo){
 		//printf("  antes del switch   TIPO  3   : %d\n", tipo);
         switch (tipo){
 			case 1:
-				printf( "            Aplicacion %ld\n", aplicaciones[j]);
+				printf( "            Aplicacion %ld %s\n", aplicaciones[j], getappnombre(aplicaciones[j]));
 				break;
 			case 2:
 				printf( "            Maquina %s\n", maquinas[j]);
@@ -735,13 +750,13 @@ void mostrarDatosArreglo(int original[], int copia[], int tope, int tipo){
 }
 
 
+
 //muestra el trafico en la red.
 void mostrarTrafico(){
 	int cantidadAux[100], cantidadAux2[100];
 	int protoaux[CANTIDAD_PROTOCOLOS];
 	//arreglo que contiene los nombres de los protocolos mas usados
 	int proto[CANTIDAD_PROTOCOLOS] = {ip, ptcp, pudp, arp, rarp, icmp, otros};
-	
     
     //------------------------------- MUESTRO LAS APLICACIONES ----------------------------------------
     printf("*****************************************************\n");
@@ -785,17 +800,17 @@ void menu(){
     //printf("*           Iglesias, Carabajal, Santos             *\n");
     printf("*****************************************************\n");
     printf("*                                                   *\n");
-    printf("* 1 - Estadisticas		                    *\n");
+    printf("* 1 - Estadisticas                                  *\n");
     printf("*                                                   *\n");
     printf("* 2 - Filtrado de paquetes TCP	      	            *\n");
     printf("*                                                   *\n");
-    printf("* 3 - Filtrado de paquetes UDP		            *\n");
+    printf("* 3 - Filtrado de paquetes UDP                      *\n");
     printf("*                                                   *\n");
-    printf("* 4 - Primeras dos conexiones TCP		    *\n");
+    printf("* 4 - Primeras dos conexiones TCP                   *\n");
 	printf("*                                                   *\n");
-    printf("* 5 - Ancho de Banda				    *\n");
+    printf("* 5 - Ancho de Banda                                *\n");
     printf("*                                                   *\n");
-    printf("* 6 - Salir				            *\n");
+    printf("* 6 - Salir                                         *\n");
     printf("*                                                   *\n");
 	printf("*****************************************************\n");
 
