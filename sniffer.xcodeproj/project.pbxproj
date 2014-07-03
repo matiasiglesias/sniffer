@@ -205,6 +205,7 @@
 		B1A84EAA195CCD5B0063C048 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = "-lpcap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -212,6 +213,7 @@
 		B1A84EAB195CCD5B0063C048 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				OTHER_LDFLAGS = "-lpcap";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
