@@ -702,8 +702,20 @@ char* getappnombre(long portnumber) {
             return "[HTTPS, HTTP over SSL/TLS]";
         case 21:
             return "[FTP, File Transfer Protocol, control]";
+        case 22:
+            return "[SSH]";
+        case 23:
+            return "[Telnet]";
+        case 35:
+            return "[SMTP, Simple Mail Transfer Protocol]";
+        case 53:
+            return "[DNS, Domain Name System]";
         case 80:
             return "[HTTP]";
+        case 110:
+            return "[POP, Post Office Protocol, version 3]";
+        case 143:
+            return "[IMAP, Interactive Mail Access Protocol]";
         case 443:
             return "[HTTPS, HTTP over SSL/TLS]";
         default:
